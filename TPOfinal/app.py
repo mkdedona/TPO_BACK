@@ -49,7 +49,7 @@ def mostrar_plato(self, codigo):
     plato = self.consultar_plato(codigo) 
     if plato: 
         print("-" * 40) 
-        print(f"Código.....: {plato['codigo']}")
+        print(f'Código.....: {plato['codigo']}')
         print(f"Descripción: {plato['descripcion']}") 
         print(f"Cantidad...: {plato['cantidad']}") 
         print(f"Precio.....: {plato['precio']}")  
