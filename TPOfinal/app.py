@@ -36,50 +36,50 @@ class Menu:
             self.cursor.close() 
             self.cursor = self.conn.cursor(dictionary=True)
 
-def listar_platos(self): 
-    self.cursor.execute("SELECT * FROM platos") 
-    platos = self.cursor.fetchall() 
-    return platos
+    def listar_platos(self): 
+        self.cursor.execute("SELECT * FROM platos") 
+        platos = self.cursor.fetchall() 
+        return platos
 
-def consultar_plato(self, codigo): 
-    self.cursor.execute(f"SELECT * FROM platos WHERE codigo = {codigo}") 
-    return self.cursor.fetchone()
+    def consultar_plato(self, codigo): 
+        self.cursor.execute(f"SELECT * FROM platos WHERE codigo = {codigo}") 
+        return self.cursor.fetchone()
 
-def mostrar_plato(self, codigo): 
-    plato = self.consultar_plato(codigo) 
-    if plato: 
-        print("-" * 40) 
-        print(f'Código.....: {plato["codigo"]}')
-        print(f"Descripción: {plato['descripcion']}") 
-        print(f"Cantidad...: {plato['cantidad']}") 
-        print(f"Precio.....: {plato['precio']}")  
-        print("-" * 40) 
-    else: print("Plato no encontrado.")
+    def mostrar_plato(self, codigo): 
+        plato = self.consultar_plato(codigo) 
+        if plato: 
+            print("-" * 40) 
+            print(f'Código.....: {plato["codigo"]}')
+            print(f"Descripción: {plato['descripcion']}") 
+            print(f"Cantidad...: {plato['cantidad']}") 
+            print(f"Precio.....: {plato['precio']}")  
+            print("-" * 40) 
+        else: print("Plato no encontrado.")
 
-def agregar_plato(self, codigo, descripcion, cantidad, precio): 
-    self.cursor.execute(f"SELECT * FROM platos WHERE codigo = {codigo}") 
-    plato_existe = self.cursor.fetchone() 
-    if plato_existe:
-        return False
-    sql = "INSERT INTO platos (codigo, descripcion, cantidad, precio) VALUES (%s, %s, %s, %s)"
-    valores = (codigo, descripcion, cantidad, precio) 
-    self.cursor.execute(sql, valores) 
-    self.conn.commit() 
-    return True
+    def agregar_plato(self, codigo, descripcion, cantidad, precio): 
+        self.cursor.execute(f"SELECT * FROM platos WHERE codigo = {codigo}") 
+        plato_existe = self.cursor.fetchone() 
+        if plato_existe:
+            return False
+        sql = "INSERT INTO platos (codigo, descripcion, cantidad, precio) VALUES (%s, %s, %s, %s)"
+        valores = (codigo, descripcion, cantidad, precio) 
+        self.cursor.execute(sql, valores) 
+        self.conn.commit() 
+        return True
 
-def modificar_plato(self, codigo, nueva_descripcion, nueva_cantidad, nuevo_precio): 
-    sql = "UPDATE platos SET descripcion = %s, cantidad = %s, precio = %s WHERE codigo = %s" 
-    valores = (nueva_descripcion, nueva_cantidad, nuevo_precio, codigo)
-    self.cursor.execute(sql, valores) 
-    self.conn.commit() 
-    return self.cursor.rowcount > 0
+    def modificar_plato(self, codigo, nueva_descripcion, nueva_cantidad, nuevo_precio): 
+        sql = "UPDATE platos SET descripcion = %s, cantidad = %s, precio = %s WHERE codigo = %s" 
+        valores = (nueva_descripcion, nueva_cantidad, nuevo_precio, codigo)
+        self.cursor.execute(sql, valores) 
+        self.conn.commit() 
+        return self.cursor.rowcount > 0
 
 
 
-def eliminar_plato(self, codigo): 
-    self.cursor.execute(f"DELETE FROM platos WHERE codigo = {codigo}") 
-    self.conn.commit() 
-    return self.cursor.rowcount > 0            
+    def eliminar_plato(self, codigo): 
+        self.cursor.execute(f"DELETE FROM platos WHERE codigo = {codigo}") 
+        self.conn.commit() 
+        return self.cursor.rowcount > 0            
 
 menu = Menu (host='localhost', user = 'root', password = '', database = 'menuplatos')
 
