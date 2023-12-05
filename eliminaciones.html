@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="TPOfinal/CSS/estilos.css"> 
 </head> 
 <body> 
-    <h1>Baja de Platos</h1>
-    <table> 
-        <thead> 
-            <tr> 
-                <th>Código</th> 
-                <th>Descripción</th> 
-                <th>Cantidad</th> 
-                <th align="right">Precio</th> 
-                <th>Acciones</th> 
-            </tr> 
-        </thead> 
-        <tbody> 
-            <tr v-for="plato in platos"> 
-                <td>{{ plato.codigo }}</td> 
-                <td>{{ plato.descripcion }}</td> 
-                <td>{{ plato.cantidad }}</td>
-                <td align="right">{{ plato.precio }}</td> 
-                <td><button @click="eliminarPlato(plato.codigo)">Eliminar</button></td>
-            </tr> 
-        </tbody>
-    </table> 
-    <div class="contenedor-centrado">
-        <a href="indexflask.html">Menu principal</a> 
-    </div> 
-    
-    <script src="https://unpkg.com/vue@next"></script> 
-    <script src="TPOfinal/JS/bajas.js"></script>
-
-    
+    <div id="fondo-elim" class="fondo">
+        <h1>Baja de Platos</h1>
+        <div id="contenedor-elim">
+            <table id="tabla-elim"> 
+                <thead> 
+                    <tr> 
+                        <th>Código</th> 
+                        <th>Descripción</th> 
+                        <th>Cantidad</th> 
+                        <th align="right">Precio</th> 
+                        <th>Acciones</th> 
+                    </tr> 
+                </thead> 
+                <tbody> 
+                    <tr v-for="plato in platos"> 
+                        <td>{{ plato.codigo }}</td> 
+                        <td>{{ plato.descripcion }}</td> 
+                        <td>{{ plato.cantidad }}</td>
+                        <td align="right">{{ plato.precio }}</td> 
+                        <td align="right"><button @click="eliminarPlato(plato.codigo)">Eliminar</button></td>
+                    </tr> 
+                </tbody>
+            </table> 
+            <div class="contenedor-centrado">
+                <a href="indexflask.html" class="boton-sec">Menu principal</a> 
+            </div> 
+        </div>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="TPOfinal/JS/bajas.js"></script>
+    </div>
 </body>
 </html>
