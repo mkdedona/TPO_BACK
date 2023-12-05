@@ -11,9 +11,9 @@ class Menu:
     def __init__(self, host, user, password, database):
         self.conn = mysql.connector.connect( 
             host= host, 
-            user='root', 
-            password=''
-
+            user=user, 
+            password=password,
+            database=database
             )
         
         self.cursor = self.conn.cursor()
@@ -49,7 +49,7 @@ def mostrar_plato(self, codigo):
     plato = self.consultar_plato(codigo) 
     if plato: 
         print("-" * 40) 
-        print(f'Código.....: {plato['codigo']}')
+        print(f'Código.....: {plato["codigo"]}')
         print(f"Descripción: {plato['descripcion']}") 
         print(f"Cantidad...: {plato['cantidad']}") 
         print(f"Precio.....: {plato['precio']}")  
@@ -61,7 +61,7 @@ def agregar_plato(self, codigo, descripcion, cantidad, precio):
     plato_existe = self.cursor.fetchone() 
     if plato_existe:
         return False
-    sql = "INSERT INTO platos (codigo, descripcion, cantidad, precio) VALUES (%s, %s, %s, %s, %s, %s)"
+    sql = "INSERT INTO platos (codigo, descripcion, cantidad, precio) VALUES (%s, %s, %s, %s)"
     valores = (codigo, descripcion, cantidad, precio) 
     self.cursor.execute(sql, valores) 
     self.conn.commit() 
