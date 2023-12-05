@@ -15,7 +15,7 @@ const app = Vue.createApp({
             }) 
             .then(data => {
                  
-                this.productos = data;
+                this.platos = data;
             }) 
             .catch(error => { 
                 console.log('Error:', error);
@@ -37,7 +37,7 @@ const app = Vue.createApp({
             } 
         }, 
         mounted() { //Al cargar la página, obtenemos la lista de productos 
-            this.obtenerProductos(); 
+            this.obtenerPlatos(); 
         } 
     }); 
     app.mount('body');
